@@ -5,19 +5,16 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Ada 🌙</title>
 
-
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
+/* =========================================================
+   TEMEL
+========================================================= */
 
 * {
     margin: 0;
@@ -33,87 +30,76 @@ body {
 }
 
 body {
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    color: #fff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: white;
 
     background:
         radial-gradient(
             ellipse at 50% 100%,
-            #172b48 0%,
-            #0b162a 42%,
+            #182d4c 0%,
+            #0b172c 42%,
             #020611 100%
         );
 }
 
 
-/* =====================================================
-   GECE
-===================================================== */
+/* =========================================================
+   GECE ARKA PLAN
+========================================================= */
 
 .night {
-
     position: fixed;
-
     inset: 0;
-
     overflow: hidden;
+    z-index: 0;
 
     background:
         radial-gradient(
-            circle at 75% 15%,
-            rgba(91,120,175,.13),
-            transparent 25%
+            circle at 78% 15%,
+            rgba(91,120,175,.14),
+            transparent 27%
         ),
 
         radial-gradient(
-            circle at 20% 65%,
-            rgba(62,94,145,.09),
+            circle at 18% 65%,
+            rgba(57,91,143,.10),
             transparent 30%
         );
 }
 
 
-/* =====================================================
+/* =========================================================
    AY
-===================================================== */
+========================================================= */
 
 .moon {
-
     position: absolute;
 
-    width: 74px;
-    height: 74px;
+    width: 72px;
+    height: 72px;
 
+    right: 9%;
     top: 6%;
-    right: 10%;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle at 35% 30%,
-            #fffdf2,
+            #fffef4,
             #e8e7dc 65%,
             #c4c5c5
         );
 
     box-shadow:
-        0 0 20px rgba(255,255,230,.22),
+        0 0 20px rgba(255,255,230,.25),
         0 0 65px rgba(190,205,255,.14);
 
     animation:
         moonFloat 7s ease-in-out infinite;
 }
 
-
-/* ay kraterleri */
-
 .moon::before {
-
     content: "";
 
     position: absolute;
@@ -126,35 +112,25 @@ body {
 
     border-radius: 50%;
 
-    background:
-        rgba(120,120,120,.13);
+    background: rgba(120,120,120,.13);
 
     box-shadow:
-
         22px 5px 0 rgba(120,120,120,.10),
-
         9px 28px 0 rgba(120,120,120,.10),
-
         34px 27px 0 rgba(120,120,120,.08);
 }
 
 
-/* =====================================================
-   YILDIZ ALANI
-===================================================== */
+/* =========================================================
+   YILDIZLAR
+========================================================= */
 
 .stars {
-
     position: absolute;
-
     inset: 0;
 }
 
-
-/* yıldız */
-
 .star {
-
     position: absolute;
 
     width: 2px;
@@ -167,26 +143,23 @@ body {
     opacity: .55;
 
     animation:
-        twinkle 3s infinite ease-in-out;
+        twinkle 3s ease-in-out infinite;
 }
 
-
 .star.big {
-
     width: 3px;
     height: 3px;
 
     box-shadow:
-        0 0 7px rgba(255,255,255,.8);
+        0 0 7px rgba(255,255,255,.85);
 }
 
 
-/* =====================================================
-   KAYAN YILDIZLAR
-===================================================== */
+/* =========================================================
+   KAYAN YILDIZ
+========================================================= */
 
 .shooting-star {
-
     position: absolute;
 
     width: 120px;
@@ -196,12 +169,11 @@ body {
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.9),
+            rgba(255,255,255,.95),
             transparent
         );
 
-    transform:
-        rotate(-27deg);
+    transform: rotate(-27deg);
 
     opacity: 0;
 
@@ -209,42 +181,34 @@ body {
         shooting 9s linear infinite;
 }
 
-
 .shooting-star.one {
-
-    top: 17%;
+    top: 16%;
     left: -20%;
-
     animation-delay: 2s;
 }
 
-
 .shooting-star.two {
-
-    top: 35%;
+    top: 34%;
     left: -20%;
-
     width: 90px;
-
     animation-delay: 6s;
 }
 
 
-/* =====================================================
-   ŞEHİR SİLÜETİ
-===================================================== */
+/* =========================================================
+   ŞEHİR
+========================================================= */
 
 .city {
-
     position: absolute;
 
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
 
-    height: 150px;
+    height: 125px;
 
-    opacity: .48;
+    opacity: .55;
 
     background:
         linear-gradient(
@@ -254,93 +218,48 @@ body {
         );
 }
 
-
-/* binalar */
-
 .buildings {
-
     position: absolute;
 
     bottom: 0;
 
     width: 100%;
-
-    height: 115px;
+    height: 105px;
 
     display: flex;
 
+    justify-content: center;
     align-items: flex-end;
 
-    justify-content: center;
-
     gap: 3px;
-
-    opacity: .8;
 }
 
-
 .building {
+    position: relative;
 
     width: 30px;
 
     background:
         linear-gradient(
             to bottom,
-            #07101d,
+            #081221,
             #02050b
         );
-
-    position: relative;
 }
 
-
-.building:nth-child(1) {
-    height: 50px;
-}
-
-.building:nth-child(2) {
-    height: 80px;
-}
-
-.building:nth-child(3) {
-    height: 62px;
-}
-
-.building:nth-child(4) {
-    height: 95px;
-}
-
-.building:nth-child(5) {
-    height: 68px;
-}
-
-.building:nth-child(6) {
-    height: 110px;
-}
-
-.building:nth-child(7) {
-    height: 72px;
-}
-
-.building:nth-child(8) {
-    height: 90px;
-}
-
-.building:nth-child(9) {
-    height: 58px;
-}
-
-.building:nth-child(10) {
-    height: 76px;
-}
-
-.building:nth-child(11) {
-    height: 48px;
-}
-
+.building:nth-child(1)  { height: 45px; }
+.building:nth-child(2)  { height: 72px; }
+.building:nth-child(3)  { height: 58px; }
+.building:nth-child(4)  { height: 92px; }
+.building:nth-child(5)  { height: 63px; }
+.building:nth-child(6)  { height: 105px; }
+.building:nth-child(7)  { height: 69px; }
+.building:nth-child(8)  { height: 87px; }
+.building:nth-child(9)  { height: 53px; }
+.building:nth-child(10) { height: 74px; }
+.building:nth-child(11) { height: 47px; }
 
 .building::after {
-
     content: "";
 
     position: absolute;
@@ -348,55 +267,25 @@ body {
     left: 7px;
     right: 7px;
 
-    top: 12px;
-
-    bottom: 8px;
+    top: 10px;
+    bottom: 7px;
 
     background:
         repeating-linear-gradient(
             to bottom,
-            rgba(224,182,101,.42) 0px,
-            rgba(224,182,101,.42) 3px,
+            rgba(224,182,101,.38) 0px,
+            rgba(224,182,101,.38) 3px,
             transparent 3px,
             transparent 12px
         );
 }
 
 
-/* =====================================================
-   UZAK IŞIKLAR
-===================================================== */
-
-.city-lights {
-
-    position: absolute;
-
-    bottom: 70px;
-
-    left: 0;
-
-    width: 100%;
-
-    height: 50px;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(206,158,85,.22),
-            transparent 65%
-        );
-
-    filter:
-        blur(10px);
-}
-
-
-/* =====================================================
-   GENEL EKRAN
-===================================================== */
+/* =========================================================
+   EKRANLAR
+========================================================= */
 
 .screen {
-
     position: fixed;
 
     inset: 0;
@@ -405,57 +294,47 @@ body {
 
     display: flex;
 
+    align-items: center;
     justify-content: center;
 
-    align-items: center;
-
-    padding: 25px;
+    padding: 20px;
 
     transition:
-        opacity 1.2s ease,
-        transform 1.2s ease;
+        opacity 1s ease,
+        transform 1s ease;
 }
 
-
 .screen.hidden {
-
     opacity: 0;
-
     pointer-events: none;
 
     transform:
-        scale(1.035);
+        scale(1.03);
 }
 
 
-/* =====================================================
+/* =========================================================
    İLK SAHNE
-===================================================== */
+========================================================= */
 
 .intro {
-
     width: 100%;
-
-    max-width: 430px;
+    max-width: 420px;
 
     text-align: center;
 
-    margin-top: -30px;
+    margin-top: -35px;
 }
 
-
 .eyebrow {
-
     font-size: 10px;
 
     letter-spacing: 5px;
 
-    text-transform: uppercase;
-
     color:
         rgba(221,227,238,.55);
 
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 
     opacity: 0;
 
@@ -463,19 +342,15 @@ body {
         fadeUp 1s .2s forwards;
 }
 
-
 .title {
+    font-family: Georgia, serif;
 
-    font-family:
-        Georgia,
-        serif;
-
-    font-size: 27px;
+    font-size: 26px;
 
     color:
         #f4f5f8;
 
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 
     opacity: 0;
 
@@ -483,40 +358,29 @@ body {
         fadeUp 1s .5s forwards;
 }
 
+.title-heart {
+    display: block;
 
-.title-line {
+    margin-top: 8px;
 
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 10px;
-
-    margin-top: 12px;
+    font-size: 13px;
 
     color:
         #aebfd8;
-
-    font-size: 14px;
 }
 
 
-/* =====================================================
-   ZARF ALANI
-===================================================== */
+/* =========================================================
+   ZARF
+========================================================= */
 
-.envelope-wrap {
-
+.envelope-wrapper {
     position: relative;
 
     width: 285px;
     height: 195px;
 
     margin: auto;
-
-    perspective: 1200px;
 
     cursor: pointer;
 
@@ -525,53 +389,55 @@ body {
 }
 
 
-/* =====================================================
-   ZARF
-===================================================== */
+/*
+   ZARFIN KENDİSİ
+*/
 
 .envelope {
-
     position: absolute;
 
-    inset: 0;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 7px;
 
     background:
         linear-gradient(
             145deg,
-            #273c5b,
+            #2b4161,
             #15263e
         );
 
-    border-radius: 7px;
-
     box-shadow:
-
         0 30px 75px rgba(0,0,0,.55),
-
-        0 0 30px rgba(85,119,165,.08),
-
-        inset 0 0 0 1px
-        rgba(255,255,255,.07);
+        0 0 30px rgba(85,119,165,.08);
 
     overflow: visible;
 }
 
 
-/* =====================================================
+/* =========================================================
    MEKTUP
-===================================================== */
+   ÖNEMLİ:
+   Mektup artık zarfın katmanlarının altında kalmıyor.
+   Açıldığında tamamen yukarı çıkıyor.
+========================================================= */
 
 .letter {
-
     position: absolute;
 
     width: 235px;
     height: 150px;
 
     left: 25px;
-    top: 17px;
+    top: 22px;
 
-    padding: 22px;
+    padding: 20px;
+
+    border-radius: 5px;
 
     background:
         linear-gradient(
@@ -580,67 +446,91 @@ body {
             #ebe6dd
         );
 
-    border-radius: 4px;
-
     color:
-        #28384b;
+        #26384c;
 
     display: flex;
 
     flex-direction: column;
 
-    justify-content: center;
-
     align-items: center;
+    justify-content: center;
 
     text-align: center;
 
-    z-index: 2;
+    /*
+       EN ÖNEMLİ KISIM
+    */
+
+    z-index: 30;
 
     box-shadow:
-        0 7px 22px rgba(0,0,0,.25);
+        0 15px 35px rgba(0,0,0,.30);
+
+    transform:
+        translateY(0);
 
     transition:
-        top 1.15s cubic-bezier(.18,.8,.2,1),
-        transform 1.15s cubic-bezier(.18,.8,.2,1);
+        top 1.2s cubic-bezier(.18,.8,.2,1),
+        transform 1.2s cubic-bezier(.18,.8,.2,1),
+        opacity .7s ease;
 }
 
 
-/* mektup içindeki küçük kalp */
+/* Mektup açılınca tamamen zarfın üstüne çıkar */
+
+.envelope.open .letter {
+    top: -155px;
+
+    transform:
+        translateY(0)
+        scale(1.04);
+}
+
+
+/* Mektup kaybolurken */
+
+.letter.hide {
+    opacity: 0;
+
+    transform:
+        translateY(-30px)
+        scale(.94);
+}
+
+
+/* =========================================================
+   MEKTUP İÇERİĞİ
+========================================================= */
 
 .letter-heart {
-
-    font-size: 17px;
+    font-size: 18px;
 
     color:
-        #7b91ad;
+        #748ba7;
 
-    margin-bottom: 10px;
+    margin-bottom: 9px;
 }
 
-
-/* mektup yazısı */
-
 .letter-text {
-
-    font-family:
-        Georgia,
-        serif;
+    font-family: Georgia, serif;
 
     font-size: 15px;
 
     line-height: 1.55;
 
     max-width: 180px;
+
+    color:
+        #293a4c;
 }
 
 
-/* =====================================================
+/* =========================================================
    ZARF KAPAĞI
-===================================================== */
+========================================================= */
 
 .envelope::before {
-
     content: "";
 
     position: absolute;
@@ -658,7 +548,7 @@ body {
         142px solid transparent;
 
     border-top:
-        110px solid #304968;
+        110px solid #334b6b;
 
     transform-origin:
         top center;
@@ -666,16 +556,20 @@ body {
     transition:
         transform 1s ease;
 
-    z-index: 5;
+    z-index: 20;
+}
+
+.envelope.open::before {
+    transform:
+        rotateX(180deg);
 }
 
 
-/* =====================================================
-   ALT KATLAR
-===================================================== */
+/* =========================================================
+   ALT ZARF KATLARI
+========================================================= */
 
 .envelope::after {
-
     content: "";
 
     position: absolute;
@@ -692,12 +586,10 @@ body {
     border-top:
         96px solid transparent;
 
-    z-index: 6;
+    z-index: 40;
 }
 
-
 .right-fold {
-
     position: absolute;
 
     right: 0;
@@ -712,55 +604,33 @@ body {
     border-top:
         96px solid transparent;
 
-    z-index: 6;
+    z-index: 40;
 }
 
 
-/* =====================================================
-   ZARF AÇILINCA
-===================================================== */
-
-.envelope.open::before {
-
-    transform:
-        rotateX(180deg);
-}
-
-
-.envelope.open .letter {
-
-    top:
-        -82px;
-
-    transform:
-        translateY(-10px);
-}
-
-
-/* =====================================================
+/* =========================================================
    MÜHÜR
-===================================================== */
+========================================================= */
 
 .seal {
-
     position: absolute;
 
     left: 50%;
     top: 54%;
 
-    transform:
-        translate(-50%,-50%);
-
     width: 46px;
     height: 46px;
+
+    transform:
+        translate(-50%,-50%);
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle at 35% 30%,
-            #61799a,
-            #253b59
+            #637c9d,
+            #263c59
         );
 
     border:
@@ -771,9 +641,9 @@ body {
     align-items: center;
     justify-content: center;
 
-    font-size: 17px;
+    font-size: 18px;
 
-    z-index: 10;
+    z-index: 50;
 
     box-shadow:
         0 5px 20px rgba(0,0,0,.35);
@@ -782,49 +652,44 @@ body {
         opacity .4s ease;
 }
 
-
 .envelope.open .seal {
-
     opacity: 0;
 }
 
 
-/* =====================================================
+/* =========================================================
    DOKUN
-===================================================== */
+========================================================= */
 
 .tap {
-
-    margin-top: 35px;
-
-    color:
-        rgba(220,227,239,.5);
+    margin-top: 36px;
 
     font-size: 11px;
 
     letter-spacing: 2px;
+
+    color:
+        rgba(220,227,239,.50);
 
     animation:
         breathe 2.5s infinite;
 }
 
 
-/* =====================================================
-   MEKTUPTAN SONRAKİ SAHNE
-===================================================== */
+/* =========================================================
+   MEKTUPTAN SONRA KAHVE SAHNESİ
+========================================================= */
 
 .question-screen {
-
     position: fixed;
 
     inset: 0;
 
-    z-index: 20;
+    z-index: 25;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
@@ -836,16 +701,14 @@ body {
     pointer-events: none;
 
     transform:
-        translateY(20px);
+        translateY(25px);
 
     transition:
         opacity 1.2s ease,
         transform 1.2s ease;
 }
 
-
 .question-screen.show {
-
     opacity: 1;
 
     pointer-events: auto;
@@ -855,68 +718,123 @@ body {
 }
 
 
-/* =====================================================
-   KAHVE MASASI
-===================================================== */
+/* =========================================================
+   SORU
+========================================================= */
 
-.coffee-area {
+.question-content {
+    position: relative;
 
+    z-index: 10;
+
+    width: 100%;
+
+    max-width: 580px;
+
+    margin-top: -70px;
+}
+
+.question-small {
+    font-family: Georgia, serif;
+
+    font-size: 23px;
+
+    color:
+        #aebfd8;
+
+    margin-bottom: 17px;
+}
+
+.question-title {
+    font-family: Georgia, serif;
+
+    font-size:
+        clamp(32px, 8vw, 54px);
+
+    line-height: 1.15;
+
+    font-weight: 400;
+
+    color:
+        #f6f7fa;
+
+    text-shadow:
+        0 4px 25px rgba(0,0,0,.35);
+}
+
+.divider {
+    width: 55px;
+
+    height: 1px;
+
+    margin:
+        22px auto;
+
+    background:
+        rgba(220,230,245,.4);
+}
+
+.question-description {
+    max-width: 390px;
+
+    margin: auto;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color:
+        rgba(221,228,239,.65);
+}
+
+
+/* =========================================================
+   KAHVELER
+========================================================= */
+
+.coffee-table {
     position: absolute;
 
     left: 50%;
-
-    bottom: -40px;
+    bottom: -35px;
 
     transform:
         translateX(-50%);
 
     width: 650px;
-
-    height: 240px;
+    height: 220px;
 
     max-width: 130%;
 
     background:
         radial-gradient(
             ellipse,
-            rgba(25,34,46,.95),
-            transparent 68%
+            rgba(16,25,38,.95),
+            transparent 70%
         );
-
-    opacity: .8;
 }
 
-
-/* =====================================================
-   KAHVE FİNCANLARI
-===================================================== */
-
 .cups {
-
     position: absolute;
 
     left: 50%;
-
-    bottom: 32px;
+    bottom: 25px;
 
     transform:
         translateX(-50%);
 
     display: flex;
 
-    align-items: flex-end;
+    gap: 20px;
 
-    gap: 18px;
+    align-items: flex-end;
 }
 
-
 .cup {
-
     position: relative;
 
-    width: 92px;
-
-    height: 62px;
+    width: 85px;
+    height: 58px;
 
     border-radius:
         0 0 45px 45px;
@@ -924,28 +842,26 @@ body {
     background:
         linear-gradient(
             to bottom,
-            #e6e3dc,
-            #bcbcb9
+            #e6e4de,
+            #bfc0be
         );
 
     border-bottom:
         5px solid #929596;
 
     box-shadow:
-        0 18px 30px rgba(0,0,0,.4);
+        0 18px 30px rgba(0,0,0,.45);
 }
 
-
 .cup::before {
-
     content: "";
 
     position: absolute;
 
-    left: 13px;
+    left: 11px;
     top: -8px;
 
-    width: 66px;
+    width: 63px;
     height: 22px;
 
     border-radius: 50%;
@@ -953,27 +869,24 @@ body {
     background:
         radial-gradient(
             ellipse,
-            #5a3827,
+            #5b3826,
             #21150f
         );
 
     border:
-        5px solid #d6d4ce;
+        5px solid #d8d6d0;
 }
 
-
 .cup::after {
-
     content: "";
 
     position: absolute;
 
-    right: -25px;
+    right: -24px;
+    top: 9px;
 
-    top: 10px;
-
-    width: 32px;
-    height: 36px;
+    width: 30px;
+    height: 35px;
 
     border:
         7px solid #c7c7c4;
@@ -985,39 +898,33 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    BUHAR
-===================================================== */
+========================================================= */
 
 .cup-steam {
-
     position: absolute;
 
     left: 50%;
+    bottom: 45px;
 
-    bottom: 48px;
-
-    width: 60px;
-
-    height: 70px;
+    width: 55px;
+    height: 65px;
 
     transform:
         translateX(-50%);
 }
 
-
 .cup-steam span {
-
     position: absolute;
 
     bottom: 0;
 
-    width: 9px;
-
-    height: 50px;
+    width: 8px;
+    height: 48px;
 
     border-left:
-        2px solid rgba(255,255,255,.24);
+        2px solid rgba(255,255,255,.23);
 
     border-radius: 50%;
 
@@ -1025,127 +932,33 @@ body {
         steam 3s infinite ease-in-out;
 }
 
-
 .cup-steam span:nth-child(1) {
-
-    left: 8px;
-
-    animation-delay: 0s;
+    left: 7px;
 }
 
-
 .cup-steam span:nth-child(2) {
-
-    left: 28px;
-
+    left: 25px;
     animation-delay: .8s;
 }
 
-
 .cup-steam span:nth-child(3) {
-
-    left: 47px;
-
-    animation-delay: 1.4s;
+    left: 43px;
+    animation-delay: 1.5s;
 }
 
 
-/* =====================================================
-   SORU
-===================================================== */
-
-.question-content {
-
-    position: relative;
-
-    z-index: 5;
-
-    width: 100%;
-
-    max-width: 570px;
-
-    margin-top: -35px;
-}
-
-
-.question-small {
-
-    font-family:
-        Georgia,
-        serif;
-
-    color:
-        #aebfd8;
-
-    font-size: 23px;
-
-    margin-bottom: 18px;
-}
-
-
-.question-title {
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size:
-        clamp(32px, 8vw, 55px);
-
-    font-weight: 400;
-
-    line-height: 1.15;
-
-    color:
-        #f5f6f8;
-
-    text-shadow:
-        0 4px 25px rgba(0,0,0,.35);
-}
-
-
-.question-divider {
-
-    width: 55px;
-
-    height: 1px;
-
-    background:
-        rgba(220,230,245,.4);
-
-    margin:
-        23px auto;
-}
-
-
-.question-description {
-
-    max-width: 390px;
-
-    margin: auto;
-
-    color:
-        rgba(221,228,239,.65);
-
-    font-size: 14px;
-
-    line-height: 1.8;
-}
-
-
-/* =====================================================
+/* =========================================================
    BUTONLAR
-===================================================== */
+========================================================= */
 
 .buttons {
-
     display: flex;
 
     justify-content: center;
 
     gap: 12px;
 
-    margin-top: 32px;
+    margin-top: 31px;
 
     opacity: 0;
 
@@ -1157,18 +970,14 @@ body {
         transform .9s ease;
 }
 
-
 .buttons.show {
-
     opacity: 1;
 
     transform:
         translateY(0);
 }
 
-
 button {
-
     border: none;
 
     font-family:
@@ -1191,11 +1000,7 @@ button {
         box-shadow .2s ease;
 }
 
-
-/* olur */
-
 .yes {
-
     color:
         #263342;
 
@@ -1210,18 +1015,13 @@ button {
         0 10px 30px rgba(210,190,165,.17);
 }
 
-
-.yes:active {
-
+.yes:active,
+.maybe:active {
     transform:
         scale(.94);
 }
 
-
-/* düşün */
-
 .maybe {
-
     color:
         #d6deea;
 
@@ -1233,25 +1033,16 @@ button {
 }
 
 
-.maybe:active {
-
-    transform:
-        scale(.94);
-}
-
-
-/* =====================================================
-   "ÖYLE BİR SEÇENEK YOK"
-===================================================== */
+/* =========================================================
+   DÜŞÜNEYİM MESAJI
+========================================================= */
 
 .no-option {
-
     position: fixed;
 
     z-index: 100;
 
     left: 50%;
-
     bottom: 25px;
 
     width:
@@ -1267,7 +1058,7 @@ button {
     text-align: center;
 
     background:
-        rgba(7,14,26,.96);
+        rgba(7,14,26,.97);
 
     border:
         1px solid rgba(195,210,232,.14);
@@ -1287,18 +1078,14 @@ button {
         transform .4s ease;
 }
 
-
 .no-option.show {
-
     opacity: 1;
 
     transform:
         translate(-50%,0);
 }
 
-
 .no-title {
-
     font-family:
         Georgia,
         serif;
@@ -1311,9 +1098,7 @@ button {
     margin-bottom: 5px;
 }
 
-
 .no-text {
-
     color:
         rgba(215,224,236,.57);
 
@@ -1321,23 +1106,21 @@ button {
 }
 
 
-/* =====================================================
+/* =========================================================
    FİNAL
-===================================================== */
+========================================================= */
 
 .final {
-
     position: fixed;
 
     inset: 0;
 
-    z-index: 50;
+    z-index: 60;
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
+    justify-content: center;
 
     text-align: center;
 
@@ -1351,13 +1134,11 @@ button {
         scale(.96);
 
     transition:
-        opacity 1.5s ease,
-        transform 1.5s ease;
+        opacity 1.4s ease,
+        transform 1.4s ease;
 }
 
-
 .final.show {
-
     opacity: 1;
 
     pointer-events: auto;
@@ -1366,22 +1147,14 @@ button {
         scale(1);
 }
 
-
 .final-content {
-
-    position: relative;
-
-    z-index: 10;
-
     max-width: 520px;
 }
 
-
 .final-cups {
-
     font-size: 65px;
 
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 
     filter:
         drop-shadow(
@@ -1392,42 +1165,38 @@ button {
         floating 3s ease-in-out infinite;
 }
 
-
 .final-title {
-
     font-family:
         Georgia,
         serif;
 
     font-size:
-        clamp(38px, 9vw, 58px);
+        clamp(38px,9vw,58px);
+
+    line-height: 1.1;
 
     font-weight: 400;
 
     color:
         #f5f7fb;
 
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-
 .final-text {
-
     font-family:
         Georgia,
         serif;
 
-    color:
-        rgba(220,227,238,.68);
-
     font-size: 16px;
 
     line-height: 1.9;
+
+    color:
+        rgba(220,227,238,.68);
 }
 
-
 .final-signature {
-
     margin-top: 28px;
 
     font-family:
@@ -1443,89 +1212,72 @@ button {
 }
 
 
-/* =====================================================
+/* =========================================================
    ANİMASYONLAR
-===================================================== */
+========================================================= */
 
 @keyframes fadeUp {
 
     from {
-
         opacity: 0;
-
         transform:
             translateY(18px);
     }
 
     to {
-
         opacity: 1;
-
         transform:
             translateY(0);
     }
 }
-
 
 @keyframes envelopeFloat {
 
     0%,
     100% {
-
         transform:
             translateY(0);
     }
 
     50% {
-
         transform:
             translateY(-7px);
     }
 }
 
-
 @keyframes moonFloat {
 
     0%,
     100% {
-
         transform:
             translateY(0);
     }
 
     50% {
-
         transform:
             translateY(8px);
     }
 }
 
-
 @keyframes twinkle {
 
     0%,
     100% {
-
         opacity: .25;
-
         transform:
             scale(.8);
     }
 
     50% {
-
         opacity: 1;
-
         transform:
             scale(1.3);
     }
 }
 
-
 @keyframes shooting {
 
     0% {
-
         transform:
             translate(-100px,0)
             rotate(-27deg);
@@ -1534,17 +1286,14 @@ button {
     }
 
     8% {
-
         opacity: 1;
     }
 
     22% {
-
         opacity: 0;
     }
 
     100% {
-
         transform:
             translate(750px,420px)
             rotate(-27deg);
@@ -1553,26 +1302,21 @@ button {
     }
 }
 
-
 @keyframes breathe {
 
     0%,
     100% {
-
         opacity: .3;
     }
 
     50% {
-
         opacity: .85;
     }
 }
 
-
 @keyframes steam {
 
     0% {
-
         transform:
             translateY(5px)
             scale(.7)
@@ -1582,12 +1326,10 @@ button {
     }
 
     25% {
-
         opacity: .5;
     }
 
     100% {
-
         transform:
             translateY(-50px)
             scale(1.2)
@@ -1597,246 +1339,192 @@ button {
     }
 }
 
-
 @keyframes floating {
 
     0%,
     100% {
-
         transform:
             translateY(0);
     }
 
     50% {
-
         transform:
             translateY(-9px);
     }
 }
 
 
-/* =====================================================
-   TELEFON
-===================================================== */
+/* =========================================================
+   MOBİL
+========================================================= */
 
 @media (max-width: 500px) {
 
     .moon {
-
         width: 57px;
-
         height: 57px;
 
-        top: 6%;
-
-        right: 9%;
+        right: 8%;
+        top: 5%;
     }
 
 
     .intro {
-
-        margin-top: -20px;
+        margin-top: -15px;
     }
 
 
     .eyebrow {
-
-        font-size: 9px;
-
+        font-size: 8px;
         letter-spacing: 4px;
     }
 
 
     .title {
-
         font-size: 23px;
-
-        margin-bottom: 27px;
+        margin-bottom: 25px;
     }
 
 
-    .envelope-wrap {
-
+    .envelope-wrapper {
         width: 250px;
-
         height: 170px;
     }
 
 
     .envelope::before {
-
-        border-left-width:
-            125px;
-
-        border-right-width:
-            125px;
-
-        border-top-width:
-            97px;
+        border-left-width: 125px;
+        border-right-width: 125px;
+        border-top-width: 97px;
     }
 
 
     .envelope::after {
-
-        border-left-width:
-            125px;
-
-        border-top-width:
-            84px;
+        border-left-width: 125px;
+        border-top-width: 84px;
     }
 
 
     .right-fold {
-
-        border-right-width:
-            125px;
-
-        border-top-width:
-            84px;
+        border-right-width: 125px;
+        border-top-width: 84px;
     }
 
 
     .letter {
-
         width: 205px;
-
         height: 132px;
 
         left: 22px;
+        top: 17px;
 
-        top: 16px;
-
-        padding: 17px;
+        padding: 15px;
     }
 
 
     .letter-text {
-
         font-size: 14px;
-
         max-width: 165px;
     }
 
 
-    .envelope.open .letter {
+    /*
+       Telefonda da mektup tamamen
+       zarfın üstüne çıkıyor.
+    */
 
-        top:
-            -73px;
+    .envelope.open .letter {
+        top: -145px;
     }
 
 
     .question-content {
-
         margin-top: -70px;
     }
 
 
     .question-small {
-
         font-size: 21px;
     }
 
 
     .question-title {
-
         font-size:
-            clamp(30px, 8.5vw, 43px);
+            clamp(30px,8.5vw,43px);
     }
 
 
     .question-description {
-
         max-width: 330px;
-
         font-size: 13px;
     }
 
 
     .buttons {
-
-        flex-direction:
-            column;
-
-        align-items:
-            center;
+        flex-direction: column;
+        align-items: center;
 
         margin-top: 27px;
     }
 
 
     button {
-
         width: 190px;
     }
 
 
-    .coffee-area {
-
-        bottom: -15px;
-    }
-
-
-    .cups {
-
-        bottom: 25px;
+    .coffee-table {
+        bottom: -10px;
     }
 
 
     .cup {
-
-        width: 75px;
-
-        height: 51px;
+        width: 72px;
+        height: 50px;
     }
 
 
     .cup::before {
-
-        width: 55px;
-
-        left: 10px;
-
-        height: 19px;
+        width: 53px;
+        left: 9px;
+        height: 18px;
     }
 
 
     .final-title {
-
         font-size: 39px;
     }
 
 
     .final-text {
-
         font-size: 15px;
     }
 
 }
 
 
-/* =====================================================
-   ÇOK KÜÇÜK TELEFONLAR
-===================================================== */
+/* =========================================================
+   ÇOK KISA TELEFONLAR
+========================================================= */
 
 @media (max-height: 680px) {
 
     .intro {
+        transform:
+            scale(.82);
+    }
 
+
+    .question-content {
         transform:
             scale(.86);
     }
 
 
-    .question-content {
-
+    .coffee-table {
         transform:
-            scale(.88);
-    }
-
-
-    .envelope-wrap {
-
-        margin-top: -5px;
+            translateX(-50%)
+            scale(.85);
     }
 
 }
@@ -1850,7 +1538,7 @@ button {
 
 
 <!-- =====================================================
-     GECE ARKA PLAN
+     GECE
 ===================================================== -->
 
 <div class="night">
@@ -1865,17 +1553,9 @@ button {
     ></div>
 
 
-    <div
-        class="shooting-star one"
-    ></div>
+    <div class="shooting-star one"></div>
 
-
-    <div
-        class="shooting-star two"
-    ></div>
-
-
-    <div class="city-lights"></div>
+    <div class="shooting-star two"></div>
 
 
     <div class="city">
@@ -1903,7 +1583,7 @@ button {
 
 
 <!-- =====================================================
-     ZARF SAHNESİ
+     ZARF EKRANI
 ===================================================== -->
 
 <section
@@ -1926,15 +1606,11 @@ button {
 
             Ada için...
 
-            <div class="title-line">
+            <span class="title-heart">
 
-                <span>—</span>
+                — ♡ —
 
-                ♡
-
-                <span>—</span>
-
-            </div>
+            </span>
 
         </div>
 
@@ -1943,8 +1619,8 @@ button {
         <!-- ZARF -->
 
         <div
-            class="envelope-wrap"
-            id="envelopeWrap"
+            class="envelope-wrapper"
+            id="envelopeWrapper"
         >
 
 
@@ -1954,9 +1630,15 @@ button {
             >
 
 
-                <!-- MEKTUP -->
+                <!--
+                    MEKTUP
+                    Artık zarfın altında kalmıyor.
+                -->
 
-                <div class="letter">
+                <div
+                    class="letter"
+                    id="letter"
+                >
 
 
                     <div class="letter-heart">
@@ -1981,8 +1663,6 @@ button {
                 <div class="right-fold"></div>
 
 
-                <!-- MÜHÜR -->
-
                 <div class="seal">
 
                     ♡
@@ -1991,6 +1671,7 @@ button {
 
 
             </div>
+
 
         </div>
 
@@ -2019,9 +1700,9 @@ button {
 >
 
 
-    <!-- ALTTAKİ KAHVELER -->
+    <!-- KAHVE MASASI -->
 
-    <div class="coffee-area">
+    <div class="coffee-table">
 
 
         <div class="cups">
@@ -2029,6 +1710,7 @@ button {
 
             <div class="cup">
 
+
                 <div class="cup-steam">
 
                     <span></span>
@@ -2036,12 +1718,14 @@ button {
                     <span></span>
 
                 </div>
+
 
             </div>
 
 
             <div class="cup">
 
+
                 <div class="cup-steam">
 
                     <span></span>
@@ -2049,6 +1733,7 @@ button {
                     <span></span>
 
                 </div>
+
 
             </div>
 
@@ -2062,7 +1747,10 @@ button {
 
     <!-- SORU -->
 
-    <div class="question-content">
+    <div
+        class="question-content"
+        id="questionContent"
+    >
 
 
         <div class="question-small">
@@ -2080,9 +1768,7 @@ button {
         </div>
 
 
-        <div class="question-divider">
-
-        </div>
+        <div class="divider"></div>
 
 
         <div class="question-description">
@@ -2095,6 +1781,7 @@ button {
             bir kahve olsun istedim. ☕
 
         </div>
+
 
 
         <!-- BUTONLAR -->
@@ -2135,7 +1822,7 @@ button {
 
 
 <!-- =====================================================
-     HAYIR SEÇENEĞİ
+     DÜŞÜNEYİM MESAJI
 ===================================================== -->
 
 <div
@@ -2217,26 +1904,22 @@ button {
 
 <script>
 
-/* =====================================================
+/* =========================================================
    YILDIZLARI OLUŞTUR
-===================================================== */
+========================================================= */
 
-const stars =
-    document.getElementById(
-        "stars"
-    );
+const starsContainer =
+    document.getElementById("stars");
 
 
 for (
     let i = 0;
-    i < 110;
+    i < 120;
     i++
 ) {
 
     const star =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     star.className =
@@ -2270,27 +1953,32 @@ for (
         2 + Math.random() * 4 + "s";
 
 
-    stars.appendChild(
+    starsContainer.appendChild(
         star
     );
 
 }
 
 
-
-/* =====================================================
+/* =========================================================
    ELEMENTLER
-===================================================== */
+========================================================= */
 
-const envelopeWrap =
+const envelopeWrapper =
     document.getElementById(
-        "envelopeWrap"
+        "envelopeWrapper"
     );
 
 
 const envelope =
     document.getElementById(
         "envelope"
+    );
+
+
+const letter =
+    document.getElementById(
+        "letter"
     );
 
 
@@ -2336,15 +2024,14 @@ const finalScreen =
     );
 
 
-
-/* =====================================================
-   ZARFI AÇ
-===================================================== */
+/* =========================================================
+   ZARF AÇILIŞI
+========================================================= */
 
 let opened = false;
 
 
-envelopeWrap.addEventListener(
+envelopeWrapper.addEventListener(
     "click",
     function () {
 
@@ -2359,7 +2046,9 @@ envelopeWrap.addEventListener(
         opened = true;
 
 
-        /* zarf aç */
+        /*
+           1 — ZARF AÇILIYOR
+        */
 
         envelope.classList.add(
             "open"
@@ -2367,75 +2056,151 @@ envelopeWrap.addEventListener(
 
 
         /*
-           Mektup biraz görünsün.
-           Sonra ilk sahne kaybolsun.
+           2 — MÜHÜR KAYBOLUYOR
+        */
+
+        setTimeout(
+            function () {
+
+                const seal =
+                    document.querySelector(
+                        ".seal"
+                    );
+
+                seal.style.opacity = "0";
+
+            },
+            500
+        );
+
+
+        /*
+           3 — MEKTUP TAMAMEN DIŞARI ÇIKIYOR
+           
+           Burada özellikle uzun bekliyoruz.
+           Ada mektubu okuyabiliyor.
         */
 
         setTimeout(
             function () {
 
 
-                introScreen.classList.add(
-                    "hidden"
-                );
+            /*
+               4 — Mektup ekranda yaklaşık
+               2.5 saniye kalıyor.
+            */
+
+            setTimeout(
+                function () {
 
 
-                setTimeout(
-                    function () {
+                    /*
+                       5 — Mektup kayboluyor
+                    */
+
+                    letter.classList.add(
+                        "hide"
+                    );
 
 
-                        questionScreen.classList.add(
-                            "show"
-                        );
+                    /*
+                       6 — Mektup tamamen
+                       kaybolduktan sonra
+                       zarf ekranı kapanıyor.
+                    */
+
+                    setTimeout(
+                        function () {
 
 
-                        /*
-                           Butonlar en son gelsin.
-                        */
-
-                        setTimeout(
-                            function () {
-
-                                buttons.classList.add(
-                                    "show"
-                                );
-
-                            },
-                            1100
-                        );
+                            introScreen.classList.add(
+                                "hidden"
+                            );
 
 
-                    },
-                    500
-                );
+                            /*
+                               7 — Kahve sorusu geliyor
+                            */
+
+                            setTimeout(
+                                function () {
 
 
-            },
-            2600
+                                    questionScreen.classList.add(
+                                        "show"
+                                    );
+
+
+                                    /*
+                                       8 — Butonlar
+                                    */
+
+                                    setTimeout(
+                                        function () {
+
+                                            buttons.classList.add(
+                                                "show"
+                                            );
+
+                                        },
+                                        1100
+                                    );
+
+
+                                },
+                                450
+                            );
+
+
+                        },
+                        750
+                    );
+
+
+                },
+                2500
+            );
+
+
+        },
+        1000
         );
 
     }
 );
 
 
-
-/* =====================================================
-   BİR DÜŞÜNEYİM
-===================================================== */
+/* =========================================================
+   "BİR DÜŞÜNEYİM"
+========================================================= */
 
 maybeButton.addEventListener(
     "click",
     function () {
 
 
-        /* mesajı göster */
-
         noOption.classList.add(
             "show"
         );
 
 
-        /* hafif titreşim */
+        /*
+           Telefonlarda titreşim destekleniyorsa
+           küçük bir titreşim.
+        */
+
+        if (
+            navigator.vibrate
+        ) {
+
+            navigator.vibrate(40);
+
+        }
+
+
+        /*
+           Butonu hafifçe salla.
+        */
 
         maybeButton.animate(
 
@@ -2478,7 +2243,9 @@ maybeButton.addEventListener(
         );
 
 
-        /* mesajı kapat */
+        /*
+           Mesajı kapat.
+        */
 
         setTimeout(
             function () {
@@ -2495,10 +2262,9 @@ maybeButton.addEventListener(
 );
 
 
-
-/* =====================================================
-   OLUR
-===================================================== */
+/* =========================================================
+   "OLUR"
+========================================================= */
 
 yesButton.addEventListener(
     "click",
@@ -2515,6 +2281,10 @@ yesButton.addEventListener(
         );
 
 
+        /*
+           Final ekranı.
+        */
+
         setTimeout(
             function () {
 
@@ -2523,14 +2293,13 @@ yesButton.addEventListener(
                 );
 
             },
-            800
+            850
         );
 
     }
 );
 
 </script>
-
 
 </body>
 
