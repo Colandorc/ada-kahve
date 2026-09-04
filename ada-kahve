@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ada ☕</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    #3d2b26 0%,
+                    #211714 35%,
+                    #0d0a09 75%
+                );
+
+            color: white;
+        }
+
+
+        /* =========================================
+           ARKA PLAN
+        ========================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+
+            overflow: hidden;
+
+            pointer-events: none;
+        }
+
+
+        .light {
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background: rgba(184, 128, 87, 0.08);
+
+            filter: blur(90px);
+        }
+
+
+        .light.one {
+            top: -180px;
+            left: -120px;
+        }
+
+
+        .light.two {
+            right: -180px;
+            bottom: -150px;
+
+            background: rgba(121, 82, 59, 0.08);
+        }
+
+
+        .grain {
+            position: absolute;
+
+            inset: 0;
+
+            opacity: 0.06;
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+        }
+
+
+
+        /* =========================================
+           GENEL EKRAN
+        ========================================= */
+
+        .screen {
+            position: fixed;
+
+            inset: 0;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+
+            opacity: 1;
+
+            transition:
+                opacity 1.2s ease,
+                transform 1.2s ease;
+        }
+
+
+        .screen.hidden {
+            opacity: 0;
+
+            pointer-events: none;
+
+            transform: scale(1.04);
+        }
+
+
+
+        /* =========================================
+           ZARF SAHNESİ
+        ========================================= */
+
+        .intro {
+            text-align: center;
+        }
+
+
+        .small-title {
+
+            font-size: 13px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            color: #c7a48d;
+
+            margin-bottom: 28px;
+
+            opacity: 0;
+
+            animation:
+                fadeUp 1s ease forwards;
+        }
+
+
+
+        /* ZARF */
+
+        .envelope-wrapper {
+
+            position: relative;
+
+            width: 270px;
+            height: 185px;
+
+            margin: auto;
+
+            cursor: pointer;
+
+            perspective: 1000px;
+        }
+
+
+        .envelope {
+
+            position: absolute;
+
+            inset: 0;
+
+            background: #8f6149;
+
+            border-radius: 7px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.5),
+                inset 0 0 0 1px rgba(255,255,255,0.08);
+
+            overflow: hidden;
+
+            transition:
+                transform .5s ease;
+        }
+
+
+        .envelope-wrapper:hover .envelope {
+
+            transform:
+                translateY(-8px);
+        }
+
+
+
+        /* Zarf kapağı */
+
+        .envelope::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 0;
+            height: 0;
+
+            border-left:
+                135px solid transparent;
+
+            border-right:
+                135px solid transparent;
+
+            border-top:
+                105px solid #a77456;
+
+            z-index: 3;
+
+            transform-origin: top;
+
+            transition:
+                transform 1s ease;
+        }
+
+
+        .envelope.open::before {
+
+            transform:
+                rotateX(180deg);
+        }
+
+
+
+        /* Zarf alt kısmı */
+
+        .envelope::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 0;
+
+            border-left:
+                135px solid #754c39;
+
+            border-top:
+                92px solid transparent;
+
+            z-index: 4;
+        }
+
+
+
+        .right-fold {
+
+            position: absolute;
+
+            right: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 0;
+
+            border-right:
+                135px solid #754c39;
+
+            border-top:
+                92px solid transparent;
+
+            z-index: 4;
+        }
+
+
+
+        /* Mektup */
+
+        .letter {
+
+            position: absolute;
+
+            width: 220px;
+            height: 145px;
+
+            left: 25px;
+            top: 20px;
+
+            background: #f5eee6;
+
+            border-radius: 4px;
+
+            color: #49342b;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            font-size: 15px;
+
+            letter-spacing: 1px;
+
+            z-index: 2;
+
+            transition:
+                transform 1s ease,
+                top 1s ease;
+        }
+
+
+        .envelope.open .letter {
+
+            top: -65px;
+
+            transform:
+                translateY(-20px);
+        }
+
+
+
+        /* Mühür */
+
+        .seal {
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            background: #5c3325;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 20px;
+
+            z-index: 8;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.3);
+
+            transition:
+                opacity .5s ease;
+        }
+
+
+        .envelope.open .seal {
+
+            opacity: 0;
+        }
+
+
+
+        .click-text {
+
+            margin-top: 28px;
+
+            font-size: 13px;
+
+            color: #bca79b;
+
+            letter-spacing: 1px;
+
+            animation:
+                pulse 2s infinite;
+        }
+
+
+
+        /* =========================================
+           KAHVE SAHNESİ
+        ========================================= */
+
+        .coffee-scene {
+
+            position: relative;
+
+            width: 100%;
+
+            max-width: 600px;
+
+            text-align: center;
+
+            transform:
+                translateY(20px);
+
+            opacity: 0;
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+
+        .coffee-scene.show {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+
+        /* =========================================
+           KAHVE FİNCANI
+        ========================================= */
+
+        .coffee {
+
+            position: relative;
+
+            width: 150px;
+            height: 95px;
+
+            margin:
+                0 auto 45px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #f2e3d2 0%,
+                    #e8d2bc 65%,
+                    #d0b39a 100%
+                );
+
+            border-radius:
+                0 0 70px 70px;
+
+            box-shadow:
+                0 25px 40px rgba(0,0,0,.45);
+
+            border-bottom:
+                7px solid #b89476;
+        }
+
+
+
+        .coffee::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 110px;
+            height: 35px;
+
+            left: 20px;
+            top: -10px;
+
+            border-radius: 50%;
+
+            background: #4b291d;
+
+            border:
+                7px solid #e8d2bc;
+
+            box-shadow:
+                inset 0 5px 8px rgba(255,255,255,.08);
+        }
+
+
+
+        /* Fincan kulpu */
+
+        .handle {
+
+            position: absolute;
+
+            width: 48px;
+            height: 55px;
+
+            right: -38px;
+            top: 15px;
+
+            border:
+                10px solid #d5b99f;
+
+            border-left: none;
+
+            border-radius:
+                0 35px 35px 0;
+        }
+
+
+
+        /* =========================================
+           BUHAR
+        ========================================= */
+
+        .steam {
+
+            position: absolute;
+
+            bottom: 100px;
+
+            left: 50%;
+
+            width: 10px;
+            height: 65px;
+
+            transform:
+                translateX(-50%);
+
+            opacity: 0;
+        }
+
+
+        .steam span {
+
+            position: absolute;
+
+            width: 8px;
+            height: 50px;
+
+            border-radius: 50%;
+
+            border-left:
+                2px solid rgba(255,255,255,.35);
+
+            filter:
+                blur(1px);
+
+            animation:
+                steam 3s infinite ease-in-out;
+        }
+
+
+        .steam span:nth-child(1) {
+
+            left: -35px;
+
+            animation-delay: 0s;
+        }
+
+
+        .steam span:nth-child(2) {
+
+            left: 0;
+
+            animation-delay: .7s;
+        }
+
+
+        .steam span:nth-child(3) {
+
+            left: 35px;
+
+            animation-delay: 1.4s;
+        }
+
+
+        .coffee-scene.show .steam {
+
+            opacity: 1;
+        }
+
+
+
+        /* =========================================
+           MESAJ
+        ========================================= */
+
+        .message {
+
+            opacity: 0;
+
+            transform:
+                translateY(20px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+
+        .message.show {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        .hello {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 25px;
+
+            color: #d9b79e;
+
+            margin-bottom: 18px;
+        }
+
+
+        .main-question {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(30px, 7vw, 52px);
+
+            line-height: 1.15;
+
+            font-weight: 400;
+
+            color: #fff8f2;
+
+            max-width: 550px;
+
+            margin:
+                0 auto 20px;
+        }
+
+
+        .subtext {
+
+            color: #b9aaa2;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+            max-width: 440px;
+
+            margin: auto;
+        }
+
+
+
+        /* =========================================
+           BUTONLAR
+        ========================================= */
+
+        .buttons {
+
+            margin-top: 38px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            opacity: 0;
+
+            transform:
+                translateY(15px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+
+        .buttons.show {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+
+        button {
+
+            border: none;
+
+            padding:
+                14px 28px;
+
+            border-radius:
+                50px;
+
+            font-size: 14px;
+
+            font-family: inherit;
+
+            cursor: pointer;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                background .25s ease;
+        }
+
+
+
+        /* OLUR */
+
+        .yes {
+
+            background:
+                #e7c7ac;
+
+            color:
+                #3b2922;
+
+            box-shadow:
+                0 8px 25px rgba(231,199,172,.18);
+        }
+
+
+        .yes:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.03);
+
+            box-shadow:
+                0 14px 35px rgba(231,199,172,.28);
+        }
+
+
+
+        /* DÜŞÜNEYİM */
+
+        .maybe {
+
+            background:
+                rgba(255,255,255,.07);
+
+            color:
+                #d7ccc6;
+
+            border:
+                1px solid rgba(255,255,255,.1);
+        }
+
+
+        .maybe:hover {
+
+            background:
+                rgba(255,255,255,.11);
+        }
+
+
+
+        /* =========================================
+           ÖYLE BİR SEÇENEK YOK MESAJI
+        ========================================= */
+
+        .no-option {
+
+            position: fixed;
+
+            left: 50%;
+
+            bottom: 35px;
+
+            transform:
+                translate(-50%, 30px);
+
+            width:
+                calc(100% - 40px);
+
+            max-width: 360px;
+
+            padding:
+                17px 20px;
+
+            border-radius:
+                18px;
+
+            background:
+                rgba(39, 27, 23, .96);
+
+            border:
+                1px solid rgba(231,199,172,.2);
+
+            box-shadow:
+                0 15px 45px rgba(0,0,0,.4);
+
+            text-align: center;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity .45s ease,
+                transform .45s ease;
+
+            z-index: 100;
+        }
+
+
+        .no-option.show {
+
+            opacity: 1;
+
+            transform:
+                translate(-50%, 0);
+        }
+
+
+        .no-option-title {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 19px;
+
+            color:
+                #f0d5bf;
+
+            margin-bottom: 5px;
+        }
+
+
+        .no-option-text {
+
+            font-size: 13px;
+
+            color:
+                #bcaea7;
+        }
+
+
+
+        /* =========================================
+           SON SAHNE
+        ========================================= */
+
+        .final {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 30px;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transform:
+                scale(.96);
+
+            transition:
+                opacity 1.3s ease,
+                transform 1.3s ease;
+        }
+
+
+        .final.show {
+
+            opacity: 1;
+
+            pointer-events: auto;
+
+            transform:
+                scale(1);
+        }
+
+
+        .final-content {
+
+            max-width: 600px;
+        }
+
+
+        .final-cup {
+
+            font-size: 75px;
+
+            margin-bottom: 25px;
+
+            filter:
+                drop-shadow(
+                    0 15px 20px rgba(0,0,0,.4)
+                );
+
+            animation:
+                floating 3s infinite ease-in-out;
+        }
+
+
+        .final h1 {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(34px, 8vw, 58px);
+
+            font-weight: 400;
+
+            margin-bottom: 18px;
+
+            color:
+                #fff6ee;
+        }
+
+
+        .final p {
+
+            color:
+                #c4b4aa;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        .heart {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            font-size: 20px;
+
+            animation:
+                heartbeat 1.5s infinite;
+        }
+
+
+
+        /* =========================================
+           ANİMASYONLAR
+        ========================================= */
+
+        @keyframes fadeUp {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(15px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+
+                opacity: .45;
+            }
+
+            50% {
+
+                opacity: 1;
+            }
+        }
+
+
+        @keyframes steam {
+
+            0% {
+
+                transform:
+                    translateY(10px)
+                    scale(.8)
+                    rotate(-5deg);
+
+                opacity: 0;
+            }
+
+            30% {
+
+                opacity: .6;
+            }
+
+            100% {
+
+                transform:
+                    translateY(-45px)
+                    scale(1.3)
+                    rotate(8deg);
+
+                opacity: 0;
+            }
+        }
+
+
+        @keyframes floating {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateY(-10px);
+            }
+        }
+
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+
+                transform:
+                    scale(1);
+            }
+
+            15% {
+
+                transform:
+                    scale(1.18);
+            }
+
+            30% {
+
+                transform:
+                    scale(1);
+            }
+        }
+
+
+
+        /* =========================================
+           TELEFON
+        ========================================= */
+
+        @media (max-width: 500px) {
+
+            .screen {
+
+                padding:
+                    20px;
+            }
+
+
+            .envelope-wrapper {
+
+                width: 240px;
+
+                height: 165px;
+            }
+
+
+            .envelope::before {
+
+                border-left-width:
+                    120px;
+
+                border-right-width:
+                    120px;
+
+                border-top-width:
+                    95px;
+            }
+
+
+            .envelope::after {
+
+                border-left-width:
+                    120px;
+
+                border-top-width:
+                    82px;
+            }
+
+
+            .right-fold {
+
+                border-right-width:
+                    120px;
+
+                border-top-width:
+                    82px;
+            }
+
+
+            .letter {
+
+                width: 195px;
+
+                height: 130px;
+
+                left: 22px;
+
+                font-size: 14px;
+            }
+
+
+            .main-question {
+
+                font-size:
+                    clamp(29px, 8vw, 42px);
+            }
+
+
+            .subtext {
+
+                font-size:
+                    14px;
+
+                max-width:
+                    330px;
+            }
+
+
+            .coffee {
+
+                margin-bottom:
+                    38px;
+            }
+
+
+            .buttons {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    center;
+
+                gap: 10px;
+
+                margin-top:
+                    30px;
+            }
+
+
+            button {
+
+                width:
+                    190px;
+
+                padding:
+                    14px 20px;
+            }
+
+
+            .no-option {
+
+                bottom:
+                    25px;
+            }
+
+
+            .final h1 {
+
+                font-size:
+                    39px;
+            }
+
+
+            .final p {
+
+                font-size:
+                    15px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ARKA PLAN
+    ========================================= -->
+
+    <div class="background">
+
+        <div class="light one"></div>
+
+        <div class="light two"></div>
+
+        <div class="grain"></div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         SAHNE 1
+         ZARF
+    ========================================= -->
+
+    <section
+        class="screen"
+        id="introScreen"
+    >
+
+        <div class="intro">
+
+
+            <div class="small-title">
+
+                Ada için
+
+            </div>
+
+
+
+            <div
+                class="envelope-wrapper"
+                id="envelopeWrapper"
+            >
+
+                <div
+                    class="envelope"
+                    id="envelope"
+                >
+
+
+                    <div class="letter">
+
+                        Sadece küçük
+                        bir soru...
+
+                    </div>
+
+
+                    <div class="right-fold"></div>
+
+
+                    <div class="seal">
+
+                        ☕
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class="click-text">
+
+                açmak için dokun
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         SAHNE 2
+         KAHVE TEKLİFİ
+    ========================================= -->
+
+    <section
+        class="screen hidden"
+        id="questionScreen"
+    >
+
+
+        <div
+            class="coffee-scene"
+            id="coffeeScene"
+        >
+
+
+            <!-- BUHAR -->
+
+            <div class="steam">
+
+                <span></span>
+
+                <span></span>
+
+                <span></span>
+
+            </div>
+
+
+
+            <!-- FİNCAN -->
+
+            <div class="coffee">
+
+                <div class="handle"></div>
+
+            </div>
+
+
+
+            <!-- MESAJ -->
+
+            <div
+                class="message"
+                id="message"
+            >
+
+
+                <div class="hello">
+
+                    Ada...
+
+                </div>
+
+
+
+                <div class="main-question">
+
+                    Bu akşam beraber<br>
+
+                    bir kahve içelim mi?
+
+                </div>
+
+
+
+                <div class="subtext">
+
+                    Öyle uzun uzun düşünülmüş,
+                    büyük bir plan falan değil.
+
+                    <br>
+
+                    Sadece sen, ben ve güzel
+                    bir kahve. ☕
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- BUTONLAR -->
+
+            <div
+                class="buttons"
+                id="buttons"
+            >
+
+
+                <button
+                    class="yes"
+                    id="yesButton"
+                >
+
+                    Olur ☕
+
+                </button>
+
+
+
+                <button
+                    class="maybe"
+                    id="maybeButton"
+                >
+
+                    Bir düşüneyim 🙈
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         ÖYLE BİR SEÇENEK YOK MESAJI
+    ========================================= -->
+
+    <div
+        class="no-option"
+        id="noOption"
+    >
+
+        <div class="no-option-title">
+
+            Öyle bir seçenek yok Ada 😌
+
+        </div>
+
+
+        <div class="no-option-text">
+
+            Kahve içiyoruz,
+            pazarlık yapmıyoruz ☕
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         SAHNE 3
+         FİNAL
+    ========================================= -->
+
+    <section
+        class="final"
+        id="finalScreen"
+    >
+
+
+        <div class="final-content">
+
+
+            <div class="final-cup">
+
+                ☕
+
+            </div>
+
+
+
+            <h1>
+
+                O zaman anlaştık.
+
+            </h1>
+
+
+
+            <p>
+
+                Bu akşam kahveler benden.
+
+                <br>
+
+                Gerisini beraber düşünürüz.
+
+            </p>
+
+
+
+            <div class="heart">
+
+                🤍
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <script>
+
+
+        /* =========================================
+           ELEMENTLER
+        ========================================= */
+
+        const envelopeWrapper =
+            document.getElementById(
+                "envelopeWrapper"
+            );
+
+
+        const envelope =
+            document.getElementById(
+                "envelope"
+            );
+
+
+        const introScreen =
+            document.getElementById(
+                "introScreen"
+            );
+
+
+        const questionScreen =
+            document.getElementById(
+                "questionScreen"
+            );
+
+
+        const coffeeScene =
+            document.getElementById(
+                "coffeeScene"
+            );
+
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        const buttons =
+            document.getElementById(
+                "buttons"
+            );
+
+
+        const yesButton =
+            document.getElementById(
+                "yesButton"
+            );
+
+
+        const maybeButton =
+            document.getElementById(
+                "maybeButton"
+            );
+
+
+        const finalScreen =
+            document.getElementById(
+                "finalScreen"
+            );
+
+
+        const noOption =
+            document.getElementById(
+                "noOption"
+            );
+
+
+
+        /* =========================================
+           ZARFI AÇ
+        ========================================= */
+
+        envelopeWrapper.addEventListener(
+            "click",
+            function () {
+
+
+                // Zarfı aç
+
+                envelope.classList.add(
+                    "open"
+                );
+
+
+
+                // Biraz bekle
+
+                setTimeout(
+                    function () {
+
+
+                        // İlk ekranı kapat
+
+                        introScreen.classList.add(
+                            "hidden"
+                        );
+
+
+
+                        // İkinci ekranı aç
+
+                        questionScreen.classList.remove(
+                            "hidden"
+                        );
+
+
+
+                        // Kahve sahnesi
+
+                        setTimeout(
+                            function () {
+
+                                coffeeScene.classList.add(
+                                    "show"
+                                );
+
+                            },
+                            400
+                        );
+
+
+
+                        // Yazı
+
+                        setTimeout(
+                            function () {
+
+                                message.classList.add(
+                                    "show"
+                                );
+
+                            },
+                            1500
+                        );
+
+
+
+                        // Butonlar
+
+                        setTimeout(
+                            function () {
+
+                                buttons.classList.add(
+                                    "show"
+                                );
+
+                            },
+                            2700
+                        );
+
+
+                    },
+                    1500
+                );
+
+
+            }
+        );
+
+
+
+        /* =========================================
+           OLUR BUTONU
+        ========================================= */
+
+        yesButton.addEventListener(
+            "click",
+            function () {
+
+
+                // Soru ekranını kapat
+
+                questionScreen.classList.add(
+                    "hidden"
+                );
+
+
+
+                // Uyarı varsa kapat
+
+                noOption.classList.remove(
+                    "show"
+                );
+
+
+
+                // Final ekranı
+
+                setTimeout(
+                    function () {
+
+                        finalScreen.classList.add(
+                            "show"
+                        );
+
+                    },
+                    700
+                );
+
+
+            }
+        );
+
+
+
+        /* =========================================
+           BİR DÜŞÜNEYİM BUTONU
+        ========================================= */
+
+        maybeButton.addEventListener(
+            "click",
+            function () {
+
+
+                // Mesajı göster
+
+                noOption.classList.add(
+                    "show"
+                );
+
+
+
+                // Butona hafif titreşim
+
+                maybeButton.animate(
+                    [
+                        {
+                            transform:
+                                "translateX(0)"
+                        },
+
+                        {
+                            transform:
+                                "translateX(-6px)"
+                        },
+
+                        {
+                            transform:
+                                "translateX(6px)"
+                        },
+
+                        {
+                            transform:
+                                "translateX(-4px)"
+                        },
+
+                        {
+                            transform:
+                                "translateX(4px)"
+                        },
+
+                        {
+                            transform:
+                                "translateX(0)"
+                        }
+                    ],
+                    {
+                        duration: 450
+                    }
+                );
+
+
+
+                // 2 saniye sonra mesajı kapat
+
+                setTimeout(
+                    function () {
+
+                        noOption.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    2000
+                );
+
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+</html>
